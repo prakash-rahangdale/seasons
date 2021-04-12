@@ -14,17 +14,23 @@ class App extends React.Component {
         );
     }
 
+    renderContent() {
+            if (this.state.errorMessage && !this.state.lat) {
+                return <div>Error: {this.state.errorMessage}</div>;
+            }
+    
+            if (!this.setState.errorMessage && this.state.lat) {
+                return <SeasonDisplay lat = {this.state.lat} />
+            }
+    
+            return <Spinner message = "please accept location request" />;
+    }
+
     //we have to define render in react
     render() {
-        if (this.state.errorMessage && !this.state.lat) {
-            return <div>Error: {this.state.errorMessage}</div>;
-        }
-
-        if (!this.setState.errorMessage && this.state.lat) {
-            return <SeasonDisplay lat = {this.state.lat} />
-        }
-
-        return <Spinner />;
+        return (
+        <div className = "border red">{this.renderContent()}</div>
+        );
     }
 }
 
